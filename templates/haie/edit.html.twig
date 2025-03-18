@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Haie{% endblock %}
+
+{% block body %}
+    <h1>Edit Haie</h1>
+
+    {{ include('haie/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_haie_index') }}">back to list</a>
+
+    {{ include('haie/_delete_form.html.twig') }}
+{% endblock %}

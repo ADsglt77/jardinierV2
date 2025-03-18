@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Haie{% endblock %}
+
+{% block body %}
+    <h1>Haie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ haie.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ haie.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ haie.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_haie_index') }}">Retour</a>
+
+    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}">Modifier</a>
+
+    {{ include('haie/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,17 @@
+nav {
+    padding: 10px;
+    gap: 10px;
+    text-align: center;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 4px 10px;
+    gap: 10px;
+}
+
+li {
+    background-color: aquamarine;
+}

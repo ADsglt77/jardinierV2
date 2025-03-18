@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Haie index{% endblock %}
+
+{% block body %}
+    <h1>Haie index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for haie in haies %}
+            <tr>
+                <td>{{ haie.nom }}</td>
+                <td>{{ haie.prix }}</td>
+                <td>
+                    <a href="{{ path('app_haie_show', {'id': haie.id}) }}">voir</a>
+                    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}">modifier</a>
+                    {{ include('haie/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune Haie disponible</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_haie_new') }}">Créer une Haie</a>
+{% endblock %}

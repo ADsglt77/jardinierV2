@@ -1,0 +1,64 @@
+h1, h3, h5 {
+    margin: 0 0 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Conteneur principal */
+.example-wrapper {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Image */
+.example-wrapper img {
+    width: 20%;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+
+/* Titres */
+h1 {
+    font-size: 2.5em;
+    color: #28a745;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #6c757d;
+}
+
+h5 a {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .example-wrapper {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    h5 a {
+        font-size: 1em;
+    }
+}

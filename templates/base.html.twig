@@ -18,10 +18,13 @@
                 <ul>
                     <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
                     <li><a href="{{ path('app_haie_index') }}">Gestion Haie</a></li>
-                    <li><a href="{{ path('app_login') }}">Login</a></li>
+                    <li><a href="{{ path('app_categorie_index') }}">Gestion Categorie</a></li>
+                    <li><a href="{{ path('app_login') }}">Se connecter</a></li>
                 </ul>
                 {% if app.user %}
-                    {{ app.user.nom }} {{ app.user.prenom }} <a href="{{ path('app_logout') }}">Logout</a>
+                    <p>{{ app.user.nom }} {{ app.user.prenom }}</p>
+                    <a href="{{ path('app_logout') }}">Se deconnecter</a>
+                    <p>{{ app.user.roles[0] }}</p>
                 {% endif %}
             </nav>
             <div class="content">

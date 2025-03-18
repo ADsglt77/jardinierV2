@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -30,6 +31,33 @@ class RegistrationFormType extends AbstractType
             ->add('prenom', TextType::class, [
                 'attr'=> ['class' => 'form-control'],
                 'label' => 'Prénom'
+            ])
+
+            ->add('adresse', TextType::class, [
+                'attr'=> ['class' => 'form-control'],
+                'label' => 'Adresse'
+            ])
+            ->add('ville', TextType::class, [
+                'attr'=> ['class' => 'form-control'],
+                'label' => 'Ville'
+            ])
+            ->add('code_p', TextType::class, [
+                'attr'=> ['class' => 'form-control'],
+                'label' => 'Code Postal'
+            ])
+            
+
+
+            ->add('roles', ChoiceType::class, [
+                'label' => 'Roles',
+                'choices' => [
+                    'Entreprise' => 'ROLE_ENTREPRISE',
+                    'Particulier' => 'ROLE_PARTICULIER',
+                ],
+                'multiple' => false,  // The user can only choose one role
+                'expanded' => false,  // Will show a select dropdown
+                'attr' => ['class' => 'form-control'],
+                'mapped' => false, // Don't map this field directly to the entity
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

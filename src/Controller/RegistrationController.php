@@ -25,6 +25,10 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
+            
+            // Récupère les rôles à partir du formulaire et assure-toi que c'est un tableau
+            $roles = $form->get('roles')->getData();
+            $user->setRoles(is_array($roles) ? $roles : [$roles]);  // Si un seul rôle, transforme-le en tableau
 
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));

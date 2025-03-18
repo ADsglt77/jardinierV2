@@ -1,17 +1,16 @@
 nav {
     padding: 10px;
     gap: 10px;
+}
+
+nav h1 {
     text-align: center;
 }
 
-ul {
+nav ul {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 4px 10px;
     gap: 10px;
-}
-
-li {
-    background-color: aquamarine;
 }

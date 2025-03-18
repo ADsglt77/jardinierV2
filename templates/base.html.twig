@@ -15,10 +15,23 @@
         <div class="mainContainer">
             <nav class="nav">
                 <h1>JARDINIER</h1>
-                <ul>
+                <ul style="margin-bottom: 100px;">
                     <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_devis_index') }}">Gestion Devis</a></li>
+                    <ul class="submenu">
+                        <li><a href="{{ path('app_devis_new') }}">Créer un devis</a></li>
+                        <li><a href="{{ path('app_devis_index') }}">Voir mes devis</a></li>
+                    </ul>
                     <li><a href="{{ path('app_haie_index') }}">Gestion Haie</a></li>
+                    <ul class="submenu">
+                        <li><a href="{{ path('app_haie_new') }}">Créer une haie</a></li>
+                        <li><a href="{{ path('app_haie_index') }}">Voir les haies</a></li>
+                    </ul>
                     <li><a href="{{ path('app_categorie_index') }}">Gestion Categorie</a></li>
+                    <ul class="submenu">
+                        <li><a href="{{ path('app_categorie_new') }}">Créer une catégorie</a></li>
+                        <li><a href="{{ path('app_categorie_index') }}">Voir les catégories</a></li>
+                    </ul>
                     <li><a href="{{ path('app_login') }}">Se connecter</a></li>
                 </ul>
                 {% if app.user %}

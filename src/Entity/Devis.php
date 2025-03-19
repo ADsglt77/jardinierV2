@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Categorie; // added
 
 #[ORM\Entity(repositoryClass: DevisRepository::class)]
 class Devis
@@ -28,6 +29,17 @@ class Devis
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    private ?float $hauteur = null;
+
+    private ?float $largeur = null;
+
+    private ?string $prixHaie = null;
+
+    // Remove the ORM mapping so it is not persisted:
+    // #[ORM\ManyToOne(targetEntity: Categorie::class)]
+    // #[ORM\JoinColumn(nullable: true)]
+    private ?Categorie $categorie = null;
 
     public function __construct()
     {
@@ -89,6 +101,51 @@ class Devis
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getHauteur(): ?float
+    {
+        return $this->hauteur;
+    }
+
+    public function setHauteur(?float $hauteur): static
+    {
+        $this->hauteur = $hauteur;
+        return $this;
+    }
+
+    public function getLargeur(): ?float
+    {
+        return $this->largeur;
+    }
+
+    public function setLargeur(?float $largeur): static
+    {
+        $this->largeur = $largeur;
+        return $this;
+    }
+
+    public function getPrixHaie(): ?string
+    {
+        return $this->prixHaie;
+    }
+
+    public function setPrixHaie(?string $prixHaie): static
+    {
+        $this->prixHaie = $prixHaie;
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): static
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

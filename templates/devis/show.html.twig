@@ -1,26 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Devis{% endblock %}
+{% block title %}Détail du Devis{% endblock %}
 
 {% block body %}
-    <h1>Devis</h1>
+    <h1>Détail du Devis</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ devi.id }}</td>
+                <th>Client</th>
+                <td>{{ devis.user.nom }} {{ devis.user.prenom }}</td>
             </tr>
             <tr>
-                <th>Date</th>
-                <td>{{ devi.date ? devi.date|date('Y-m-d') : '' }}</td>
+                <th>Type de Haie</th>
+                <td>{{ devis.categorie ? devis.categorie.libelle : 'N/A' }}</td>
+            </tr>
+            <tr>
+                <th>Prix de la Haie</th>
+                <td>{{ devis.prixHaie }}</td>
+            </tr>
+            <tr>
+                <th>Hauteur</th>
+                <td>{{ devis.hauteur }}</td>
+            </tr>
+            <tr>
+                <th>Largeur</th>
+                <td>{{ devis.largeur }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ devis.date ? devis.date|date('Y-m-d H:i') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_devis_index') }}">back to list</a>
-
-    <a href="{{ path('app_devis_edit', {'id': devi.id}) }}">edit</a>
-
-    {{ include('devis/_delete_form.html.twig') }}
+    <a href="{{ path('app_devis_index') }}">Retour à la liste</a>
 {% endblock %}

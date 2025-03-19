@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis Index{% endblock %}
+
+{% block body %}
+    <h1>Liste des Devis</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Client</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for devis in devis %}
+                <tr>
+                    <td>{{ devis.id }}</td>
+                    <td>{{ devis.date ? devis.date|date('Y-m-d H:i') : '' }}</td>
+                    <td>{{ devis.user.nom }} {{ devis.user.prenom }}</td>
+                    <td>
+                        <a href="{{ path('app_devis_show', {'id': devis.id}) }}">Voir</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="4">Aucun devis trouvé</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_devis_new') }}">Créer un devis</a>
+{% endblock %}

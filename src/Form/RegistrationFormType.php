@@ -45,9 +45,6 @@ class RegistrationFormType extends AbstractType
                 'attr'=> ['class' => 'form-control'],
                 'label' => 'Code Postal'
             ])
-            
-
-
             ->add('roles', ChoiceType::class, [
                 'label' => 'Roles',
                 'choices' => [

@@ -3,11 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DevisRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Categorie; // added
 
 #[ORM\Entity(repositoryClass: DevisRepository::class)]
 class Devis
@@ -21,30 +18,20 @@ class Devis
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    /**
-     * @var Collection<int, Tailler>
-     */
-    #[ORM\OneToMany(targetEntity: Tailler::class, mappedBy: 'devis')]
-    private Collection $taillers;
+    #[ORM\Column]
+    private ?int $hauteur = null;
+
+    #[ORM\Column]
+    private ?int $largeur = null;
+
+    #[ORM\Column]
+    private ?int $prix = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
-
-    private ?float $hauteur = null;
-
-    private ?float $largeur = null;
-
-    private ?string $prixHaie = null;
-
-    // Remove the ORM mapping so it is not persisted:
-    // #[ORM\ManyToOne(targetEntity: Categorie::class)]
-    // #[ORM\JoinColumn(nullable: true)]
-    private ?Categorie $categorie = null;
-
-    public function __construct()
-    {
-        $this->taillers = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -63,32 +50,50 @@ class Devis
         return $this;
     }
 
-    /**
-     * @return Collection<int, Tailler>
-     */
-    public function getTaillers(): Collection
+    public function getHauteur(): ?int
     {
-        return $this->taillers;
+        return $this->hauteur;
     }
 
-    public function addTailler(Tailler $tailler): static
+    public function setHauteur(int $hauteur): static
     {
-        if (!$this->taillers->contains($tailler)) {
-            $this->taillers->add($tailler);
-            $tailler->setDevis($this);
-        }
+        $this->hauteur = $hauteur;
 
         return $this;
     }
 
-    public function removeTailler(Tailler $tailler): static
+    public function getLargeur(): ?int
     {
-        if ($this->taillers->removeElement($tailler)) {
-            // set the owning side to null (unless already changed)
-            if ($tailler->getDevis() === $this) {
-                $tailler->setDevis(null);
-            }
-        }
+        return $this->largeur;
+    }
+
+    public function setLargeur(int $largeur): static
+    {
+        $this->largeur = $largeur;
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): static
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -101,51 +106,6 @@ class Devis
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getHauteur(): ?float
-    {
-        return $this->hauteur;
-    }
-
-    public function setHauteur(?float $hauteur): static
-    {
-        $this->hauteur = $hauteur;
-        return $this;
-    }
-
-    public function getLargeur(): ?float
-    {
-        return $this->largeur;
-    }
-
-    public function setLargeur(?float $largeur): static
-    {
-        $this->largeur = $largeur;
-        return $this;
-    }
-
-    public function getPrixHaie(): ?string
-    {
-        return $this->prixHaie;
-    }
-
-    public function setPrixHaie(?string $prixHaie): static
-    {
-        $this->prixHaie = $prixHaie;
-        return $this;
-    }
-
-    public function getCategorie(): ?Categorie
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(?Categorie $categorie): static
-    {
-        $this->categorie = $categorie;
 
         return $this;
     }

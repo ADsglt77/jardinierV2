@@ -3,7 +3,7 @@
 {% block title %}Haie index{% endblock %}
 
 {% block body %}
-    <h1>Haie index</h1>
+    <h4>Haie index</h4>
 
     <table class="table">
         <thead>
@@ -22,7 +22,7 @@
                 <td>{{ haie.categorie.libelle }}</td>
                 <td>
                     <a href="{{ path('app_haie_show', {'id': haie.id}) }}">voir</a>
-                    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}">modifier</a>
+                    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}" class="modif">modifier</a>
                     {{ include('haie/_delete_form.html.twig') }}
                 </td>
             </tr>

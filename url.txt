@@ -1,0 +1,5 @@
+                    <li><a href="{{ path('app_devis_index') }}">Gestion Devis</a></li>
+                    <ul class="submenu">
+                        <li><a href="{{ path('app_devis_new') }}">Créer une haie</a></li>
+                        <li><a href="{{ path('app_devis_index') }}">Voir les haies</a></li>
+                    </ul>

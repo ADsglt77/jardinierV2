@@ -1,0 +1,40 @@
+<head>
+    <link rel="stylesheet" href="{{ asset('/css/nav.css') }}">
+</head>
+<nav class="nav">
+    <h1>JARDINIER</h1>
+    <ul>
+        <li><a href="{{ path('app_accueil') }}"><h6>Accueil</h6></a></li>
+
+        <li><a href="{{ path('app_haie_index') }}"><h6>Gestion Haie</h6></a></li>
+        <ul class="submenu">
+            <li><a href="{{ path('app_haie_new') }}"><h6>Créer une haie</h6></a></li>
+            <li><a href="{{ path('app_haie_index') }}"><h6>Voir les haies</h6></a></li>
+        </ul>
+
+        <li><a href="{{ path('app_categorie_index') }}"><h6>Gestion Categorie</h6></a></li>
+        <ul class="submenu">
+            <li><a href="{{ path('app_categorie_new') }}"><h6>Créer une catégorie</h6></a></li>
+            <li><a href="{{ path('app_categorie_index') }}"><h6>Voir les catégories</h6></a></li>
+        </ul>
+
+        <li><a href="{{ path('app_user_index') }}"><h6>Gestion Users</h6></a></li>
+        <ul class="submenu">
+            <li><a href="{{ path('app_user_new') }}"><h6>Créer un User</h6></a></li>
+            <li><a href="{{ path('app_user_index') }}"><h6>Voir les users</h6></a></li>
+        </ul>
+
+        {% if not app.user %}
+            <li><a href="{{ path('app_login') }}"><h6>Se connecter</h6></a></li>
+        {% endif %}
+    </ul>
+    {% if app.user %}
+    <div class="profil">
+        <div>
+            <h6>{{ app.user.nom }} {{ app.user.prenom }}</h6>
+            <a href="{{ path('app_logout') }}"><h6>Se deconnecter</a>
+            <!-- <h6>{{ app.user.roles[0] }}</h6> -->
+        </div>
+    </div>
+    {% endif %}
+</nav>

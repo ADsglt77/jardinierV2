@@ -5,48 +5,16 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
-        <link rel="stylesheet" href="{{ asset('/css/nav.css') }}">
         <link rel="stylesheet" href="{{ asset('/css/accueil.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/tableau.css') }}">
+        {% block stylesheets %}{% endblock %}
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
         <div class="mainContainer">
-            <nav class="nav">
-                <h1>JARDINIER</h1>
-                <ul style="margin-bottom: 100px;">
-                    <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
-                    <li><a href="{{ path('app_devis_index') }}">Gestion Devis</a></li>
-                    <ul class="submenu">
-                        <li><a href="{{ path('app_devis_new') }}">Créer une haie</a></li>
-                        <li><a href="{{ path('app_devis_index') }}">Voir les haies</a></li>
-                    </ul>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li><a href="{{ path('app_haie_index') }}">Gestion Haie</a></li>
-                        <ul class="submenu">
-                            <li><a href="{{ path('app_haie_new') }}">Créer une haie</a></li>
-                            <li><a href="{{ path('app_haie_index') }}">Voir les haies</a></li>
-                        </ul>
-                        <li><a href="{{ path('app_categorie_index') }}">Gestion Categorie</a></li>
-                        <ul class="submenu">
-                            <li><a href="{{ path('app_categorie_new') }}">Créer une catégorie</a></li>
-                            <li><a href="{{ path('app_categorie_index') }}">Voir les catégories</a></li>
-                        </ul>
-                        <li><a href="{{ path('app_user_index') }}">Gestion Users</a></li>
-                        <ul class="submenu">
-                            <li><a href="{{ path('app_user_new') }}">Créer un User</a></li>
-                            <li><a href="{{ path('app_user_index') }}">Voir les users</a></li>
-                        </ul>
-                    {% endif %}
-                    <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                </ul>
-                {% if app.user %}
-                    <p>{{ app.user.nom }} {{ app.user.prenom }}</p>
-                    <a href="{{ path('app_logout') }}">Se deconnecter</a>
-                    <p>{{ app.user.roles[0] }}</p>
-                {% endif %}
-            </nav>
+            {% include 'NavBar.html.twig' %}
             <div class="content">
                 {% block body %}{% endblock %}
             </div>

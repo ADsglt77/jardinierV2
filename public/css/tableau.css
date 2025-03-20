@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1em 0;
+    border-spacing: 0;
+}
+
+th {
+    font-weight: bold;
+    padding: 0.5em;
+    border-width: 0 0 1px 1px;
+    background: rgba(var(--deepGreen1));
+    color: rgba(var(--white));
+    text-align: left;
+    border: 1px solid rgba(var(--deepGreen1));
+}
+
+td {
+    padding: 0.5em;
+    border-width: 0 0 1px 1px;
+    border: 1px solid rgba(var(--deepGreen1));
+    background-color: rgba(var(--green), 0.1);
+}

@@ -1,16 +1,51 @@
 nav {
-    padding: 10px;
-    gap: 10px;
+  max-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 nav h1 {
-    text-align: center;
+  font-size: var(--txt-3xl);
+  color: rgba(var(--deepGreen1));
+  text-align: center;
+  margin: 0;
 }
 
-nav ul {
+nav h6 {
+  font-weight: 300;
+}
+
+nav > ul {
+  padding: 10px;
+}
+
+nav > ul li {
+  padding: 10px 0;
+  font-size: var(--txt-xl);
+  position: relative;
+}
+
+nav ul ul {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: rgba(var(--deepGreen1));
+}
+
+nav .profil {
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+}
+
+nav .profil div {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding: 4px 10px;
-    gap: 10px;
+    /*margin: 0 auto;*/
 }

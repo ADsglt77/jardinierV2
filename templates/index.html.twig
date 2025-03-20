@@ -2,15 +2,11 @@
 
 {% block title %}Jardinier - Acceuil{% endblock %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/accueil.css') }}">
-{% endblock %}
-
 {% block body %}
-<div class="example-wrapper">
+<div class="accueil">
     <h1>Le P'tit j@rdinier</h1>
-    <h3>Des professionnels à votre service</h3>
-    <h5><a href="">Obtenir un devis en ligne</a></h5>
+    <h5>Des professionnels à votre service</h5>
+    <p><a href="">Obtenir un devis en ligne</a></p>
     <img src='{{ asset('img/jardinier.png') }}'></img>
 </div>
 {% endblock %}

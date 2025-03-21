@@ -3,18 +3,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   max-height: 100vh;
-  gap: 20px;
 }
 
-.accueil h1 {
-  font-size: var(--txt-5xl);
-  color: rgba(var(--deepGreen1));
+.accueil h3,
+.accueil h5 {
+  color: rgba(var(--deepGreen2));
   margin: 0;
+}
+
+.accueil a {
+  color: rgba(var(--green));
+  text-decoration: none;
 }
 
 .accueil img {
   width: 400px;
   height: auto;
+  margin-top: 20px;
 }

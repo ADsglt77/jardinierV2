@@ -28,7 +28,7 @@ nav > ul li {
 }
 
 nav ul ul {
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 nav ul li a {
@@ -38,14 +38,40 @@ nav ul li a {
   color: rgba(var(--deepGreen1));
 }
 
+nav ul li a svg {
+  width: 26px;
+  height: auto;
+}
+
+nav ul li a p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 nav .profil {
   display: flex;
+  margin: 0 auto;
   align-items: flex-end;
   flex-grow: 1;
 }
 
 nav .profil div {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     /*margin: 0 auto;*/
+    margin-bottom: 10px;
+}
+
+nav .profil a {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+nav .profil svg {
+  width: 26px;
+  height: auto;
+  margin-right: 10px;
 }

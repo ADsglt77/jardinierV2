@@ -22,9 +22,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_haie_index') }}">Retour</a>
-
-    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}">Modifier</a>
-
+    <a href="{{ path('app_haie_index') }}"><button>Retour</button></a>
+    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}"><button>Modifier</button></a>
     {{ include('haie/_delete_form.html.twig') }}
 {% endblock %}

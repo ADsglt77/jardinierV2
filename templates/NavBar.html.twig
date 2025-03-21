@@ -4,35 +4,37 @@
 <nav class="nav">
     <h1>JARDINIER</h1>
     <ul>
-        <li><a href="{{ path('app_accueil') }}"><h6>Accueil</h6></a></li>
+        <li><a href="{{ path('app_accueil') }}"><p>{% include '/icons/accueil.html.twig' %}Accueil</p></a></li>
 
-        <li><a href="{{ path('app_haie_index') }}"><h6>Gestion Haie</h6></a></li>
+        <li><a href="{{ path('app_haie_index') }}"><p>{% include '/icons/haie.html.twig' %}Gestion Haie</p></a></li>
         <ul class="submenu">
-            <li><a href="{{ path('app_haie_new') }}"><h6>Créer une haie</h6></a></li>
-            <li><a href="{{ path('app_haie_index') }}"><h6>Voir les haies</h6></a></li>
+            <li><a href="{{ path('app_haie_new') }}"><p>Créer une haie</p></a></li>
+            <li><a href="{{ path('app_haie_index') }}"><p>Voir les haies</p></a></li>
         </ul>
 
-        <li><a href="{{ path('app_categorie_index') }}"><h6>Gestion Categorie</h6></a></li>
+        <li><a href="{{ path('app_categorie_index') }}"><p>{% include '/icons/categorie.html.twig' %}Gestion Categorie</p></a></li>
         <ul class="submenu">
-            <li><a href="{{ path('app_categorie_new') }}"><h6>Créer une catégorie</h6></a></li>
-            <li><a href="{{ path('app_categorie_index') }}"><h6>Voir les catégories</h6></a></li>
+            <li><a href="{{ path('app_categorie_new') }}"><p>Créer une catégorie</p></a></li>
+            <li><a href="{{ path('app_categorie_index') }}"><p>Voir les catégories</p></a></li>
         </ul>
 
-        <li><a href="{{ path('app_user_index') }}"><h6>Gestion Users</h6></a></li>
+        <li><a href="{{ path('app_user_index') }}"><p>{% include '/icons/utilisateur.html.twig' %}Gestion Users</p></a></li>
         <ul class="submenu">
-            <li><a href="{{ path('app_user_new') }}"><h6>Créer un User</h6></a></li>
-            <li><a href="{{ path('app_user_index') }}"><h6>Voir les users</h6></a></li>
+            <li><a href="{{ path('app_user_new') }}"><p>Créer un User</p></a></li>
+            <li><a href="{{ path('app_user_index') }}"><p>Voir les users</p></a></li>
         </ul>
 
         {% if not app.user %}
-            <li><a href="{{ path('app_login') }}"><h6>Se connecter</h6></a></li>
+            <li><a href="{{ path('app_login') }}"><p>Se connecter</p></a></li>
         {% endif %}
     </ul>
     {% if app.user %}
     <div class="profil">
         <div>
             <h6>{{ app.user.nom }} {{ app.user.prenom }}</h6>
-            <a href="{{ path('app_logout') }}"><h6>Se deconnecter</a>
+            <a href="{{ path('app_logout') }}">
+                {% include '/icons/logout.html.twig' %}
+            </a>
             <!-- <h6>{{ app.user.roles[0] }}</h6> -->
         </div>
     </div>

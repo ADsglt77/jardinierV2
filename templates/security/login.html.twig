@@ -1,27 +1,31 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
 
-{% block body %}
-        <form method="post">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+<head>
+    <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/loginRegister.css') }}">
+</head>
+<div class="login">
+    <div class="container">
+        <div class="loginHeader">
+            <img src='{{ asset('img/HouseWithGarden.png') }}'></img>
+            <h4>Se connecter</h4>
+        </div>
+        <form method="post" class="form-group">
+                <label for="inputEmail">Email :</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Votre mot de passe" required autofocus>
+                <label for="inputPassword">Mot de Passe :</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Votre mot de passe" required>
 
-            <h4 class="h3 mb-3 font-weight-normal">Please sign in</h4>
-            <label for="inputEmail">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-            <label for="inputPassword">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-            <input type="hidden" name="_csrf_token"
-                value="{{ csrf_token('authenticate') }}"
-            >
+                {% if error %}
+                    <p class="msg error">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                {% endif %}
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
+                <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>
+            </div>
 
-        <p>Nouvel utilisateur ? <a href="{{ path('app_register') }}">S'enregistrer</a></p>
-    </form>
-{% endblock %}
+            <p class="register">Nouvel utilisateur ? <a href="{{ path('app_register') }}">S'enregistrer</a></p>
+        </form>
+    </div>
+</div>

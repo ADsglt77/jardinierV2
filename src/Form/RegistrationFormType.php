@@ -22,54 +22,56 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'attr'=> ['class' => 'form-control'],
-                'label' => 'E-mail'
+                'label' => 'Mail :'
             ])
             ->add('nom', TextType::class, [
                 'attr'=> ['class' => 'form-control'],
-                'label' => 'Nom'
+                'label' => 'Nom :'
             ])
             ->add('prenom', TextType::class, [
                 'attr'=> ['class' => 'form-control'],
-                'label' => 'Prénom'
+                'label' => 'Prénom :'
             ])
 
             ->add('adresse', TextType::class, [
                 'attr'=> ['class' => 'form-control'],
-                'label' => 'Adresse'
+                'label' => 'Adresse :'
             ])
             ->add('ville', TextType::class, [
                 'attr'=> ['class' => 'form-control'],
-                'label' => 'Ville'
+                'label' => 'Ville :'
             ])
             ->add('code_p', TextType::class, [
                 'attr'=> ['class' => 'form-control'],
-                'label' => 'Code Postal'
+                'label' => 'Code Postal :'
             ])
             ->add('roles', ChoiceType::class, [
-                'label' => 'Roles',
+                'label' => 'Vous êtes :',
                 'choices' => [
-                    'Entreprise' => 'ROLE_ENTREPRISE',
-                    'Particulier' => 'ROLE_PARTICULIER',
+                    'Une Entreprise' => 'ROLE_ENTREPRISE',
+                    'Un Particulier' => 'ROLE_PARTICULIER',
                 ],
                 'multiple' => false,  // The user can only choose one role
                 'expanded' => false,  // Will show a select dropdown
                 'attr' => ['class' => 'form-control'],
                 'mapped' => false, // Don't map this field directly to the entity
             ])
+            /*
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue(['message' => 'You should agree to our terms.']),
                 ],
             ])
+            */
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control'],
                 'constraints' => [
-                    new NotBlank(['message' => 'Please enter a password']),
+                    new NotBlank(['message' => 'Veuillez saisir un mot de passe']),
                     new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'min' => 8,
+                        'minMessage' => 'Votre mot de passe doit comporter au moins {{ limite }} caractères',
                         'max' => 4096,
                     ]),
                 ],

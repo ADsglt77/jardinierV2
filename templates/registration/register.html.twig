@@ -1,24 +1,34 @@
-{% extends 'base.html.twig' %}
+<head>
+    <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/loginRegister.css') }}">
+</head>
+<div class="login">
+    <div class="container">
+        <div class="loginHeader">
+            <img src='{{ asset('img/HouseWithGarden.png') }}'></img>
+            <h4>S'inscrire</h4>
+        </div>
+        <form method="post" class="form-group">
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm._token) }}
+                <div class="inputs">
+                    {{ form_row(registrationForm.nom) }}
+                    {{ form_row(registrationForm.prenom) }}
+                </div>
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.adresse) }}
+                <div class="inputs">
+                    {{ form_row(registrationForm.ville) }}
+                    {{ form_row(registrationForm.code_p) }}
+                </div>
+                {{ form_row(registrationForm.plainPassword, { label: 'Mot de Passe :' }) }}
+                <!--{#{ form_row(registrationForm.agreeTerms) }#}-->
 
-{% block title %}Register{% endblock %}
-
-{% block body %}
-    <h4>Register</h4>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm._token) }}
-        {{ form_row(registrationForm.nom) }}
-        {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.adresse) }}
-        {{ form_row(registrationForm.ville) }}
-        {{ form_row(registrationForm.code_p) }}
-        {{ form_row(registrationForm.plainPassword, { label: 'Password' }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        {# Le champ des rôles est un select, pas une case à cocher #}
-        {{ form_row(registrationForm.roles) }} {# Cette ligne affiche le champ select pour les rôles #}
-
-        <button type="submit" class="btn">S'enregistrer</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+                {# Le champ des rôles est un select, pas une case à cocher #}
+                {{ form_row(registrationForm.roles) }} {# Cette ligne affiche le champ select pour les rôles #}
+                <button type="submit" class="btn">S'enregistrer</button>
+            {{ form_end(registrationForm) }}
+        </form>
+    </div>
+    <p class="register">Vous avez un compte ? <a href="{{ path('app_login') }}">Se connecter</a></p>
+</div>

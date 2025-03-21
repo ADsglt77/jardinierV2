@@ -17,6 +17,10 @@ final class HaieController extends AbstractController
     #[Route(name: 'app_haie_index', methods: ['GET'])]
     public function index(HaieRepository $haieRepository): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('haie/index.html.twig', [
             'haies' => $haieRepository->findAll(),
         ]);
@@ -25,6 +29,10 @@ final class HaieController extends AbstractController
     #[Route('/new', name: 'app_haie_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $haie = new Haie();
         $form = $this->createForm(HaieType::class, $haie);
         $form->handleRequest($request);
@@ -45,6 +53,10 @@ final class HaieController extends AbstractController
     #[Route('/{id}', name: 'app_haie_show', methods: ['GET'])]
     public function show(Haie $haie): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('haie/show.html.twig', [
             'haie' => $haie,
         ]);
@@ -53,6 +65,10 @@ final class HaieController extends AbstractController
     #[Route('/{id}/edit', name: 'app_haie_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Haie $haie, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $form = $this->createForm(HaieType::class, $haie);
         $form->handleRequest($request);
 
@@ -71,6 +87,10 @@ final class HaieController extends AbstractController
     #[Route('/{id}', name: 'app_haie_delete', methods: ['POST'])]
     public function delete(Request $request, Haie $haie, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+        
         if ($this->isCsrfTokenValid('delete'.$haie->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($haie);
             $entityManager->flush();

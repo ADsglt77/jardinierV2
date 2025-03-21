@@ -5,34 +5,28 @@
 {% block body %}
     <h4>Haie index</h4>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Type</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="list">
         {% for haie in haies %}
-            <tr>
-                <td>{{ haie.nom }}</td>
-                <td>{{ haie.prix }}</td>
-                <td>{{ haie.categorie.libelle }}</td>
-                <td>
-                    <a href="{{ path('app_haie_show', {'id': haie.id}) }}">voir</a>
-                    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}" class="modif">modifier</a>
+            <div class="card">
+                <p><strong>Nom :</strong> {{ haie.nom }}</p>
+                <p><strong>Prix :</strong> {{ haie.prix }}€</p>
+                <p><strong>Type :</strong> {{ haie.categorie.libelle }}</p>
+                <div class="actions">
+                    <a href="{{ path('app_haie_show', {'id': haie.id}) }}" class="info">
+                        <button>{{ include('icons/voir.html.twig') }}</button>
+                    </a>
+                    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}" class="warning">
+                        <button>{{ include('icons/modifier.html.twig') }}</button>
+                    </a>
                     {{ include('haie/_delete_form.html.twig') }}
-                </td>
-            </tr>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="4">Aucune Haie disponible</td>
-            </tr>
+            <p>Aucune Haie disponible</p>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
 
-    <a href="{{ path('app_haie_new') }}">Créer une Haie</a>
+    <a href="{{ path('app_haie_new') }}" class="success">
+        <button>Créer une Haie</button>
+    </a>
 {% endblock %}

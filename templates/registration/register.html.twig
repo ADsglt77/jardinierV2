@@ -22,7 +22,7 @@
                     {{ form_row(registrationForm.code_p) }}
                 </div>
                 {{ form_row(registrationForm.plainPassword, { label: 'Mot de Passe :' }) }}
-                <!--{#{ form_row(registrationForm.agreeTerms) }#}-->
+                {{ form_row(registrationForm.agreeTerms) }}
 
                 {# Le champ des rôles est un select, pas une case à cocher #}
                 {{ form_row(registrationForm.roles) }} {# Cette ligne affiche le champ select pour les rôles #}

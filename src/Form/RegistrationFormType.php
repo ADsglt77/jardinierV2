@@ -56,14 +56,12 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['class' => 'form-control'],
                 'mapped' => false, // Don't map this field directly to the entity
             ])
-            /*
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue(['message' => 'You should agree to our terms.']),
                 ],
             ])
-            */
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control'],
@@ -71,7 +69,7 @@ class RegistrationFormType extends AbstractType
                     new NotBlank(['message' => 'Veuillez saisir un mot de passe']),
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Votre mot de passe doit comporter au moins {{ limite }} caractères',
+                        'minMessage' => '8 caractères minimum',
                         'max' => 4096,
                     ]),
                 ],
@@ -83,6 +81,9 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'csrf_token_id'   => 'registration',
         ]);
     }
 }

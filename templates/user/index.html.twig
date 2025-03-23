@@ -1,26 +1,32 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}User index{% endblock %}
-
+{% block title %}Liste des Utilisateur{% endblock %}
 {% block body %}
-    <h4>User index</h4>
-
+<h4>Gestion des Utilisateurs</h4>
+<div class="content">
     <div class="list">
         {% for user in users %}
             <div class="card">
                 <p><strong>Email :</strong> {{ user.email }}</p>
-                <p><strong>Roles :</strong> {{ user.roles ? user.roles|json_encode : '' }}</p>
+                <p><strong>Roles :</strong>
+                    {% if 'ROLE_ADMIN' in user.roles %}
+                        Administrateur
+                    {% elseif 'ROLE_ENTREPRISE' in user.roles %}
+                        Entreprise
+                    {% else %}
+                        Particulier
+                    {% endif %}
+                </p>
                 <p><strong>Nom :</strong> {{ user.nom }}</p>
                 <p><strong>Prénom :</strong> {{ user.prenom }}</p>
                 <p><strong>Adresse :</strong> {{ user.adresse }}</p>
                 <p><strong>Ville :</strong> {{ user.ville }}</p>
                 <p><strong>Code Postal :</strong> {{ user.CodeP }}</p>
                 <div class="actions">
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class="info">
-                        <button>{{ include('icons/voir.html.twig') }}</button>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}">
+                        <button class="info">VOIR</button>
                     </a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="warning">
-                        <button>{{ include('icons/modifier.html.twig') }}</button>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">
+                        <button class="warning">MODIFIER</button>
                     </a>
                     {{ include('user/_delete_form.html.twig') }}
                 </div>
@@ -29,10 +35,8 @@
             <p>No records found.</p>
         {% endfor %}
     </div>
-
-    <div class="add-user">
-        <a href="{{ path('app_user_new') }}" class="success">
-            <button>Ajouter un Utilisateur</button>
-        </a>
-    </div>
+    <a href="{{ path('app_user_new') }}" class="create">
+        <button>Ajouter un Utilisateur</button>
+    </a>
+</div>
 {% endblock %}

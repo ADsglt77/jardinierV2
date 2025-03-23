@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Crée
+{% endblock %}
+{% block body %}
+{% if devis is defined %}
+<h4>Ajouter une haie au devis N°{{ devis }}</h4>
+<form action="{{ path('mesure_add_validee', {'id': devis}) }}" method="post" novalidate>
+   {% else %}
+   <h4>Créer un nouveau Devis</h4>
+	<form action="{{ path('mesure_validee') }}" method="post" novalidate>
+	{% endif %}
+	<select class="form-select" aria-label="Selectionner votre type de haie" name="type" required>
+		<option value="" selected>--Choisir votre type de haie--</option>
+		{% for haie in lesHaies %}
+		<option value="{{ haie.id }}">{{ haie.nom }}</option>
+		{% endfor %}
+	</select>
+	<input type="text" pattern="[0-9]{0,7}" class="form-control" name="longueur" id="longueur" placeholder="Longueur en cm" required>
+	<input type="text" pattern="[0-9]{0,7}" class="form-control" name="hauteur" id="hauteur" placeholder="Hauteur en cm" required>
+	<button type="submit">Ajouter la haie au devis</button>
+	</form>
+</form>
+
+{% endblock %}

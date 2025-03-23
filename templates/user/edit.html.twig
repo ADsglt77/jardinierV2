@@ -5,9 +5,9 @@
 {% block body %}
     <h4>Edit User</h4>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+    <a>{{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}</a>
 
-    <a href="{{ path('app_user_index') }}" class="warning"><button>Retour à la liste</button></a>
+    <a href="{{ path('app_user_index') }}" class="warning"><button class="info">Retour à la liste</button></a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

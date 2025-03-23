@@ -90,3 +90,8 @@
   color: rgba(var(--error));
   font-size: 0.875rem;
 }
+
+.login .form-group .agree-terms {
+  display: flex;
+
+}

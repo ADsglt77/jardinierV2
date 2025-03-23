@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des Devis{% endblock %}
+{% block body %}
+<h4>Gestion des Devis</h4>
+<div class="content">
+    <div class="list">
+        {% for devis in lesDevis %}
+            <div class="card">
+                <h5>Devis n°{{ devis.id }}</h5>
+                <p>{{ devis.date|date("d/m/Y", "Europe/Paris") }}</p>
+                <div class="actions">
+                    <a href="{{ path("app_suppression_devis", {'id': devis.id}) }}">
+                        <button class="error">SUPPRIMER</button>
+                    </a>
+                    <a href="{{ path("devis", {'id': devis.id}) }}">
+                        <button class="info">VOIR</button>
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <p>No records found.</p>
+        {% endfor %}
+    </div>
+    <a href="{{ path('mesure') }}" class="create">
+        <button>Créer un nouveau Devis</button>
+    </a>
+</div>
+{% endblock %}

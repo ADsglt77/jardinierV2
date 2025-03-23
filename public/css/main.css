@@ -21,10 +21,10 @@
   --lightGray: 235, 235, 235;
   --deepWhite: 245, 243, 244;
   --white: 255, 255, 255;
-  --success: 0, 128, 0;
-  --warning: 255, 165, 0;
-  --error: 255, 0, 0;
-  --info: 0, 0, 255;
+  --success: 145, 237, 130;
+  --warning: 237, 219, 130;
+  --error: 237, 149, 130;
+  --info: 130, 205, 237;
   --txt-xs: 0.75rem;
   --txt-sm: 0.875rem;
   --txt-base: 1rem;
@@ -75,11 +75,22 @@ p {
 }
 
 .content {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   padding: 20px;
+}
+
+.content .role {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background-color: rgba(var(--deepGreen1));
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: rgba(var(--white));
 }
 
 @media screen and (max-width: 2200px) {
@@ -132,13 +143,6 @@ p {
   border-color: rgba(var(--deepGreen1));
 }
 
-.mainContainer .content button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
-
 .mainContainer .content select {
   width: 100%;
   padding: 0.5rem;
@@ -147,51 +151,94 @@ p {
   margin-bottom: 1rem;
 }
 
-.mainContainer .content .success {
-  color: rgba(var(--success));
+a {
+  width: fit-content;
+  padding: 0.2rem 0.6rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.mainContainer .content .warning {
-  color: rgba(var(--warning));
-}
-
-.mainContainer .content .error {
-  color: rgba(var(--error));
-  position: absolute;
-  top: -23px;
-  right: -30px;
-}
-
-.mainContainer .content .info {
+button.info {
   color: rgba(var(--info));
 }
 
+button.info:hover {
+  color: rgba(var(--info));
+}
+
+button.success {
+  color: rgba(var(--success));
+}
+
+button.success:hover {
+  color: rgba(var(--success));
+}
+
+button.warning {
+  color: rgba(var(--warning));
+}
+
+button.warning:hover {
+  color: rgba(var(--warning));
+}
+
+button.error {
+  color: rgba(var(--error));
+}
+
+button.error:hover {
+  color: rgba(var(--error));
+}
+
 .list {
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
 .card {
-  position: relative;
   width: fit-content;
   padding: 1rem;
-  border: 2px solid rgba(var(--deepGreen1));
-  border-radius: 10px;
+  border: 1px solid rgba(var(--deepGray));
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContainer .content .actions {
+  display: flex;
+  gap: 1rem;
+  margin: 10px;
+}
+
+.mainContainer .content .actions a {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.mainContainer .content .actions a button {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
   transition: 0.3s ease;
 }
 
-.card:hover {
-  background-color: rgba(var(--green), 0.05);
-}
-
-.card .actions {
-  display: flex;
-  gap: 10px;
-}
-
-.card .actions button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
+.mainContainer .content button {
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: 0.3s ease;
 }

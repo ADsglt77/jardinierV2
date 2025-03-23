@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis
+{% endblock %}
+
+
+{% block body %}
+<div class='content'>
+	<div class="devis">
+		<div class="header">
+			<div>
+				<img src="{{ asset("/img/GardeningGloves.png") }}">
+				<h1>DEVIS N°{{ devis.id }}</h1>
+			</div>
+            <p><strong>Créér le :</strong> {{ devis.date|date("d/m/Y", "Europe/Paris") }}</p>
+		</div>
+
+		<div class="infoClient">
+			<div>
+				<p>Jardinier, Inc.</p>
+				<p>Rue de la Jardinierie</p>
+				<p>JardinCity, CP 12345</p>
+			</div>
+			<div>
+				{% if choix == "ROLE_ENTREPRISE" %}
+					<p>Vous êtes un Entreprise</p>
+					<p>Remise : 10%</p>
+				{% else %}
+					<p>Vous êtes un Particulier</p>
+				{% endif %}
+			</div>
+		</div>
+		<table>
+			<tr>
+				<th>Type</th>
+				<th>Prix unitaire</th>
+				<th>Longueur</th>
+				<th>Hauteur</th>
+				<th></th>
+			</tr>
+			{% for tailler in taillers %}
+			<tr>
+				<td>{{ tailler.haie.nom }}</td>
+				<td>{{ tailler.haie.prix|format_currency('EUR') }}</td>
+				<td>{{ tailler.Longueur }} cm</td>
+				<td>{{ tailler.Hauteur }} cm</td>
+				<td><a href="{{ path("app_suppression_tailler_devis", {'id': tailler.id })}}">
+					<p>SUPPRIMER</p>
+				</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		<p class='total'><strong>Total :</strong> {{ total|format_currency('EUR') }}</p>
+    </div>
+	<div class="devisActions">
+            <a href="{{ path('app_liste_devis') }}" style="text-decoration: none;">
+				<p>RETOUR A LA LISTE DES DEVIS</p>
+			</a>
+			<a href="{{ path('mesure_add', {'id': devis.id}) }}" style="text-decoration: none;">
+				<p>AJOUTER UNE HAIE AU DEVIS</p>
+			</a>
+        </div>
+</div>
+{% endblock %}

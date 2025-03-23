@@ -1,0 +1,71 @@
+.devis {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin: 20px;
+    padding: 50px;
+}
+
+.devis .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 80px;
+}
+
+.devis .header div {
+    display: flex;
+    align-items: center;
+}
+
+.devis .header img {
+    width: 250px;
+    height: auto;
+}
+
+.devis .infoClient {
+    display: flex;
+    justify-content: space-between;
+}
+
+.devis table a p {
+    width: fit-content;
+    background-color: #df7474;
+    padding: 0.5rem 1rem;
+    border-radius: 0.40rem;
+    cursor: pointer;
+    color: rgba(var(--white));
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+p.total {
+    text-align: right;
+}
+
+.devisActions {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.devisActions a {
+    width: fit-content;
+    background-color: rgba(var(--deepGreen1));
+    padding: 0.5rem 1rem;
+    border-radius: 0.40rem;
+    cursor: pointer;
+    color: rgba(var(--white));
+}

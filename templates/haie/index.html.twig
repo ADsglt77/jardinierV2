@@ -1,10 +1,8 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Haie index{% endblock %}
-
+{% block title %}Liste des Haies{% endblock %}
 {% block body %}
-    <h4>Haie index</h4>
-
+<h4>Gestion des Haie</h4>
+<div class="content">
     <div class="list">
         {% for haie in haies %}
             <div class="card">
@@ -12,21 +10,21 @@
                 <p><strong>Prix :</strong> {{ haie.prix }}€</p>
                 <p><strong>Type :</strong> {{ haie.categorie.libelle }}</p>
                 <div class="actions">
-                    <a href="{{ path('app_haie_show', {'id': haie.id}) }}" class="info">
-                        <button>{{ include('icons/voir.html.twig') }}</button>
+                    <a href="{{ path('app_haie_show', {'id': haie.id}) }}">
+                        <button class="info">VOIR</button>
                     </a>
-                    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}" class="warning">
-                        <button>{{ include('icons/modifier.html.twig') }}</button>
+                    <a href="{{ path('app_haie_edit', {'id': haie.id}) }}">
+                        <button class="warning">MODIFIER</button>
                     </a>
                     {{ include('haie/_delete_form.html.twig') }}
                 </div>
             </div>
         {% else %}
-            <p>Aucune Haie disponible</p>
+            <p>No records found.</p>
         {% endfor %}
     </div>
-
-    <a href="{{ path('app_haie_new') }}" class="success">
-        <button>Créer une Haie</button>
+    <a href="{{ path('app_haie_new') }}" class="create">
+        <button>Ajouter une Haie</button>
     </a>
+</div>
 {% endblock %}

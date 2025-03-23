@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DevisRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,20 +20,19 @@ class Devis
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\Column]
-    private ?int $hauteur = null;
-
-    #[ORM\Column]
-    private ?int $largeur = null;
-
-    #[ORM\Column]
-    private ?int $prix = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
+    /**
+     * @var Collection<int, Tailler>
+     */
+    #[ORM\OneToMany(targetEntity: Tailler::class, mappedBy: 'devis')]
+    private Collection $taillers;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    public function __construct()
+    {
+        $this->taillers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -50,50 +51,32 @@ class Devis
         return $this;
     }
 
-    public function getHauteur(): ?int
+    /**
+     * @return Collection<int, Tailler>
+     */
+    public function getTaillers(): Collection
     {
-        return $this->hauteur;
+        return $this->taillers;
     }
 
-    public function setHauteur(int $hauteur): static
+    public function addTailler(Tailler $tailler): static
     {
-        $this->hauteur = $hauteur;
+        if (!$this->taillers->contains($tailler)) {
+            $this->taillers->add($tailler);
+            $tailler->setDevis($this);
+        }
 
         return $this;
     }
 
-    public function getLargeur(): ?int
+    public function removeTailler(Tailler $tailler): static
     {
-        return $this->largeur;
-    }
-
-    public function setLargeur(int $largeur): static
-    {
-        $this->largeur = $largeur;
-
-        return $this;
-    }
-
-    public function getPrix(): ?int
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(int $prix): static
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
+        if ($this->taillers->removeElement($tailler)) {
+            // set the owning side to null (unless already changed)
+            if ($tailler->getDevis() === $this) {
+                $tailler->setDevis(null);
+            }
+        }
 
         return $this;
     }

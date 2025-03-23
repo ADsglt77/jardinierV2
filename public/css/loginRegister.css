@@ -54,6 +54,11 @@
   width: 100%;
 }
 
+.login ul li {
+  color: rgba(var(--error));
+  font-size: 0.875rem;
+}
+
 .login .form-group .inputs {
   display: flex;
   gap: 10px;
@@ -79,4 +84,9 @@
 
 .login .msg {
     position: relative;
+}
+
+.msg.error {
+  color: rgba(var(--error));
+  font-size: 0.875rem;
 }

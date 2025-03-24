@@ -18,13 +18,19 @@ use Symfony\Component\HttpFoundation\Request;
 class ListeDevisController extends AbstractController
 {
     #[Route('/liste/devis', name: 'app_liste_devis')]
-    public function index(NotifierInterface $notifier, UserRepository $UserRepository, UserInterface $userInterface): Response
+    public function index(NotifierInterface $notifier, UserRepository $UserRepository, UserInterface $userInterface, DevisRepository $devisRepository): Response
     {
 
-        $identifantUser = $userInterface->getUserIdentifier();
-        $User = $UserRepository->findOneBy(['email' => $identifantUser]);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            // Utilisateur admin : affiche tous les devis
+            $lesDevis = $devisRepository->findAll();
+        } else {
+            // Utilisateur non admin : affiche uniquement ses devis
+            $identifantUser = $userInterface->getUserIdentifier();
+            $User = $UserRepository->findOneBy(['email' => $identifantUser]);
+            $lesDevis = $User->getDevis();
+        }
 
-        $lesDevis = $User->getDevis();
 
         return $this->render('liste_devis/index.html.twig', [
             'controller_name' => 'ListeDevisController',

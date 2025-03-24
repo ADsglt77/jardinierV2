@@ -14,7 +14,9 @@
 
         <li><a href="" style='cursor: default;'><p>{% include '/icons/haie.html.twig' %}Gestion Haie</p></a></li>
         <ul class="submenu">
+            {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('app_haie_new') }}"><p>Créer une haie</p></a></li>
+            {% endif %}
             <li><a href="{{ path('app_haie_index') }}"><p>Voir les haies</p></a></li>
         </ul>
 
@@ -32,15 +34,20 @@
             <li><a href="{{ path('app_user_index') }}"><p>Voir les users</p></a></li>
         </ul>
         {% endif %}
-
-        {% if not app.user %}
-            <li><a href="{{ path('app_login') }}"><p>Se connecter</p></a></li>
-        {% endif %}
     </ul>
     {% if app.user %}
     <div class="profil">
         <div>
-            <h6>{{ app.user.nom }} {{ app.user.prenom }}</h6>
+            <h6>
+                {{ app.user.nom }} {{ app.user.prenom }}
+                {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                Administrateur
+                {% elseif app.user.roles[0] == 'ROLE_ENTREPRISE' %}
+                Entreprise
+                {% else %}
+                Particulier
+                {% endif %}
+            </h6>
             <a href="{{ path('app_logout') }}">
                 {% include '/icons/logout.html.twig' %}
             </a>

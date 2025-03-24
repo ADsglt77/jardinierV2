@@ -23,6 +23,8 @@
     </table>
 
     <a href="{{ path('app_haie_index') }}"><button>Retour</button></a>
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('app_haie_edit', {'id': haie.id}) }}"><button>Modifier</button></a>
     {{ include('haie/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

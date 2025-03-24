@@ -13,18 +13,22 @@
                     <a href="{{ path('app_haie_show', {'id': haie.id}) }}">
                         <button class="info">VOIR</button>
                     </a>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('app_haie_edit', {'id': haie.id}) }}">
                         <button class="warning">MODIFIER</button>
                     </a>
                     {{ include('haie/_delete_form.html.twig') }}
+                    {% endif %}
                 </div>
             </div>
         {% else %}
             <p>No records found.</p>
         {% endfor %}
     </div>
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('app_haie_new') }}" class="create">
         <button>Ajouter une Haie</button>
     </a>
+    {% endif %}
 </div>
 {% endblock %}
